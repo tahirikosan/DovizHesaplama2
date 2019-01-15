@@ -6,6 +6,81 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:text="Welcome X"
+        android:id="@+id/welcomeMsg"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_width="342dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tlText"
+        android:layout_width="179dp"
+        android:layout_height="43dp"
+        android:layout_marginRight="8dp"
+        android:gravity="left"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
+        android:id="@+id/dolarText"
+        android:layout_width="179dp"
+        android:layout_height="43dp"
+        android:layout_marginRight="8dp"
+        android:gravity="left"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.192" />
+
+    <TextView
+        android:id="@+id/angText"
+        android:layout_width="179dp"
+        android:layout_height="43dp"
+        android:layout_marginRight="8dp"
+        android:gravity="left"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.284" />
+
+    <TextView
+        android:id="@+id/euroText"
+        android:layout_width="179dp"
+        android:layout_height="43dp"
+        android:layout_marginRight="8dp"
+        android:gravity="left"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.376" />
 
     <EditText
         android:id="@+id/numberInput"
@@ -15,41 +90,41 @@
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.47" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="69dp"
-        android:layout_height="wrap_content"
+        android:layout_height="107dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.407">
+        app:layout_constraintVertical_bias="0.693">
 
         <RadioButton
-            android:id="@+id/radioYen"
+            android:id="@+id/radioAng"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="checkButton"
-            android:text="Yen" />
+            android:text="ANG" />
 
         <RadioButton
-            android:id="@+id/radioTl"
+            android:id="@+id/radioEuro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:onClick="checkButton"
-            android:text="TL" />
+            android:text="Euro" />
 
         <RadioButton
             android:id="@+id/radioDolar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="checkButton"
             android:text="Dolar" />
@@ -69,7 +144,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.621" />
+        app:layout_constraintVertical_bias="0.854" />
 
     <TextView
         android:id="@+id/sonucId2"
@@ -85,49 +160,45 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.732" />
-
-    <TextView
-        android:id="@+id/aciklama"
-        android:layout_width="369dp"
-        android:layout_height="96dp"
-        android:layout_marginRight="8dp"
-        android:gravity="center"
-        android:text="Döviz Çevirici"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.012" />
+        app:layout_constraintVertical_bias="0.965" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="113dp"
-        android:layout_height="60dp"
+        android:layout_width="107dp"
+        android:layout_height="49dp"
         android:onClick="getRates"
         android:text="Çevir"
         android:textColor="@color/colorPrimary"
         android:textColorHighlight="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintHorizontal_bias="0.971"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.988" />
+        app:layout_constraintVertical_bias="0.525" />
 
     <Button
-        android:id="@+id/cevir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Miktarı Ekle"
+        android:id="@+id/satinAl"
+        android:layout_width="121dp"
+        android:layout_height="49dp"
+        android:text="Satın AL"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.654"
+        app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.365" />
+        app:layout_constraintVertical_bias="0.606" />
+
+    <Button
+        android:id="@+id/bozdur"
+        android:layout_width="121dp"
+        android:layout_height="49dp"
+        android:text="Bozdur"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.418"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.731" />
 
 </android.support.constraint.ConstraintLayout>
