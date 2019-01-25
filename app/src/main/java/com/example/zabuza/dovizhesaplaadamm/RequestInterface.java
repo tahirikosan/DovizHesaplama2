@@ -15,5 +15,8 @@ public interface RequestInterface {
     @POST("login.php")
     Call<JsonResponse> login(@Field("name") String name, @Field("password") String password);
 
+    @FormUrlEncoded
+    @POST("update.php")
+    Call<JsonResponse> update(@Field("name") String name, @Field("TL") float TL, @Field("EU") float EU, @Field("DL") float DL, @Field("ANG") float ANG);
 
 }

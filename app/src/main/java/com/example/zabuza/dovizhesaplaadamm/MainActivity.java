@@ -22,6 +22,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String SHARED_PREFS = "sharedPrefs";
@@ -36,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton radioAng;
     private RadioButton radioButton;
 
+    private TextView tv_highScore;
     private TextView welcomeMsg;
     private TextView sonuc;
     private TextView sonuc2;
@@ -43,17 +50,25 @@ public class MainActivity extends AppCompatActivity {
     private TextView dolarText;
     private TextView angText;
     private TextView euroText;
+
     private EditText numberInput;
+
     private Button satinAlButton;
     private Button bozdurButton;
 
-    private  String user_name;
-    private float numberInt;
-    private float tlMiktar = 1000;
-    private float dolarMiktar = 10;
-    private float angMiktar = 20;
-    private float euroMiktar = 0;
+    private String user_name;
+    private String user_amount;
+    private String user_TL;
+    private String user_EU;
+    private String user_DL;
+    private String user_ANG;
     private String secilenPara;
+
+    private float numberInt;
+    private float tlMiktar = 0;
+    private float dolarMiktar = 0;
+    private float angMiktar = 0;
+    private float euroMiktar = 0;
     private float katsayi;
 
 
@@ -65,6 +80,15 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         user_name = intent.getStringExtra(Intent.EXTRA_TEXT);
+        user_TL = intent.getStringExtra("TL");
+        user_EU = intent.getStringExtra("EURO");
+        user_DL = intent.getStringExtra("DOLAR");
+        user_ANG = intent.getStringExtra("ANG");
+
+        tlMiktar = Float.parseFloat(user_TL);
+        euroMiktar = Float.parseFloat(user_EU);
+        dolarMiktar = Float.parseFloat(user_DL);
+        angMiktar = Float.parseFloat(user_ANG);
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         radioDolar = (RadioButton) findViewById(R.id.radioDolar);
@@ -82,10 +106,19 @@ public class MainActivity extends AppCompatActivity {
         dolarText = (TextView)findViewById(R.id.dolarText);
         angText = (TextView) findViewById(R.id.angText);
         euroText = (TextView) findViewById(R.id.euroText);
-        sonuc = findViewById(R.id.sonucId);
-        sonuc2 = findViewById(R.id.sonucId2);
+        sonuc = (TextView) findViewById(R.id.sonucId);
+        sonuc2 = (TextView) findViewById(R.id.sonucId2);
+        tv_highScore = (TextView)findViewById(R.id.tv_highscore);
 
         welcomeMsg.setText("Welcome " + user_name);
+
+        tv_highScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HighScoreActivity.class);
+                startActivity(intent);
+            }
+        });
 
         satinAlButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,28 +134,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loadData();
+        //loadData();
         updateViews();
     }
 
     public void saveData(){
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putFloat(INT, tlMiktar);
-        editor.putFloat(INT1, angMiktar);
-        editor.putFloat(INT2, dolarMiktar);
-        editor.putFloat(INT3, euroMiktar);
-        editor.apply();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.192.4.189/update.php/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RequestInterface request = retrofit.create(RequestInterface.class);
+        Call<JsonResponse> call = request.update(user_name, tlMiktar, euroMiktar, dolarMiktar, angMiktar);
+        call.enqueue(new Callback<JsonResponse>() {
+            @Override
+            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                if(response.code() == 200){
+                    JsonResponse response1 = response.body();
+                    Toast.makeText(getApplicationContext(),response1.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonResponse> call, Throwable t) {
+               // Toast.makeText(getApplicationContext(), "Kaydedilmedi", Toast.LENGTH_SHORT).show();
+                //Burada bir sıkıntı var.Veriler güncelleniyor fakat response alınamıyor!
+            }
+        });
     }
 
+/*
     public void loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         tlMiktar = sharedPreferences.getFloat(INT,tlMiktar);
         angMiktar = sharedPreferences.getFloat(INT1,angMiktar);
         dolarMiktar = sharedPreferences.getFloat(INT2, dolarMiktar);
         euroMiktar = sharedPreferences.getFloat(INT3, euroMiktar);
-    }
+    }*/
+
 
     public void updateViews(){
         tlText.setText("TürkL = " + tlMiktar);

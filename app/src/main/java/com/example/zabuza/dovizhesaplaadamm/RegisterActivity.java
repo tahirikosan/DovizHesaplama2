@@ -35,9 +35,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String user_name = et_name.getText().toString();
                 String user_password = et_password.getText().toString();
 
-                Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.45/register.php/")
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.192.4.189/register.php/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
+
                 RequestInterface request = retrofit.create(RequestInterface.class);
                 Call<JsonResponse> call = request.create(user_name, user_password);
                 call.enqueue(new Callback<JsonResponse>() {
